@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 220 14% 4%;
+        --foreground: 210 11% 92%;
+        --card: 220 14% 6%;
+        --card-foreground: 210 11% 92%;
+        --popover: 220 14% 6%;
+        --popover-foreground: 210 11% 92%;
+        --primary: 199 100% 67%;
+        --primary-foreground: 220 14% 4%;
+        --secondary: 220 10% 10%;
+        --secondary-foreground: 210 11% 92%;
+        --muted: 220 10% 10%;
+        --muted-foreground: 215 8% 58%;
+        --accent: 220 10% 12%;
+        --accent-foreground: 210 11% 92%;
+        --destructive: 0 62.8% 50.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 100% / 0.08;
+        --input: 0 0% 100% / 0.1;
+        --ring: 199 100% 67%;
+        --radius: 0.5rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-line;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+    body {
+        @apply bg-base text-fg font-sans antialiased;
+        text-rendering: optimizeLegibility;
+    }
+    ::selection {
+        background: rgba(87, 199, 255, 0.25);
+        color: #fff;
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #08090b;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #23272d;
+        border-radius: 6px;
+        border: 2px solid #08090b;
+    }
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+}
+
+/* ---------- signature details ---------- */
+
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hero-grid {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 90% 80% at 60% 30%, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 60% 30%, black 30%, transparent 75%);
+}
+
+.corner-ticks {
+    position: relative;
+}
+.corner-ticks::before,
+.corner-ticks::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: rgba(87, 199, 255, 0.5);
+    border-style: solid;
+    transition: border-color 0.3s ease;
+}
+.corner-ticks::before {
+    top: -1px;
+    left: -1px;
+    border-width: 1px 0 0 1px;
+}
+.corner-ticks::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 1px 1px 0;
+}
+
+/* ---------- status pulse ---------- */
+
+.pulse-dot {
+    position: relative;
+}
+.pulse-dot::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 9999px;
+    border: 1px solid rgba(87, 199, 255, 0.6);
+    animation: pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+@keyframes pulse-ring {
+    0% { transform: scale(0.6); opacity: 0.9; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* ---------- flow connectors (CSS packet drip) ---------- */
+
+.flow-connector {
+    position: relative;
+    width: 1px;
+    margin: 0 auto;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+    overflow: hidden;
+}
+.flow-connector::after {
+    content: "";
+    position: absolute;
+    left: -1.5px;
+    top: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 9999px;
+    background: #57c7ff;
+    box-shadow: 0 0 6px rgba(87, 199, 255, 0.8);
+    animation: drip 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.flow-connector.slow::after { animation-duration: 3.4s; animation-delay: 0.7s; }
+@keyframes drip {
+    0% { transform: translateY(-6px); opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { transform: translateY(var(--drip-dist, 26px)); opacity: 0; }
+}
+
+/* ---------- marquee ---------- */
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 46s linear infinite;
+}
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ---------- svg packet flow ---------- */
+
+.flow-line {
+    stroke-dasharray: 3 7;
+    animation: dashmove 1.4s linear infinite;
+}
+@keyframes dashmove {
+    to { stroke-dashoffset: -10; }
+}
+
+.node-glow {
+    animation: node-breathe 3.2s ease-in-out infinite;
+}
+@keyframes node-breathe {
+    0%, 100% { stroke-opacity: 0.55; }
+    50% { stroke-opacity: 1; }
+}
+
+/* ---------- terminal caret ---------- */
+
+.caret::after {
+    content: "▋";
+    margin-left: 2px;
+    color: #57c7ff;
+    animation: caret-blink 1s steps(1) infinite;
+}
+@keyframes caret-blink {
+    50% { opacity: 0; }
+}
+
+/* ---------- diagram lines on project cards ---------- */
+
+.diagram-edge {
+    stroke-dasharray: 2 6;
+    transition: stroke 0.4s ease;
+}
+.group:hover .diagram-edge,
+.group:focus-visible .diagram-edge {
+    animation: dashmove 0.9s linear infinite;
+    stroke: rgba(87, 199, 255, 0.7);
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track,
+    .flow-line,
+    .diagram-edge,
+    .flow-connector::after,
+    .pulse-dot::after,
+    .node-glow,
+    .caret::after {
+        animation: none !important;
+    }
+    .noise-overlay {
+        display: none;
+    }
+}
