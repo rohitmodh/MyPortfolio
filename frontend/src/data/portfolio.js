@@ -30,6 +30,50 @@ export const aboutCopy = [
 
 export const experience = [
   {
+    id: "enpal",
+    role: "Senior Software Engineer",
+    company: "Enpal",
+    period: "2025 — Present",
+    location: "Berlin, Germany",
+    current: true,
+    summary:
+      "Technical anchor for customer identity, distributed systems, and API platforms across a multi-service energy-tech backend.",
+    achievements: [
+      {
+        text: "Designed a customer-detection workflow combining address normalization, Azure Maps, and CRM intelligence to identify potential multi-site customers from incoming leads.",
+        tags: [".NET", "Azure Maps", "MongoDB", "CRM Integration", "Customer Identity", "Distributed Systems"],
+      },
+      {
+        text: "Designed a deterministic identity-generation service producing consistent 10-digit PersonIds, supporting up to 10 billion identifiers within each yearly namespace for reliable customer identity resolution.",
+        tags: ["Go", "Format-Preserving Encryption", "MongoDB", "Cryptography", "Identity Resolution", "Deterministic Systems"],
+      },
+      {
+        text: "Built live and historical address-matching workflows that reconcile normalized customer addresses across MongoDB and CRM systems, including large-scale backfill processing.",
+        tags: ["Go", "MongoDB", "Backfill", "Data Consistency", "CRM Synchronization", "Data Reconciliation"],
+      },
+      {
+        text: "Extended a reusable domain-ID generation platform to support additional consumers while maintaining compatibility across existing services.",
+        tags: ["Node.js", "Azure Functions", "API Design", "Platform Engineering", "Serverless", "Backward Compatibility"],
+      },
+      {
+        text: "Built and evolved customer and order APIs supporting customer lifecycle workflows, CRM integrations, and service-to-service communication across a polyglot backend.",
+        tags: ["Node.js", ".NET", "REST APIs", "Microservices", "CRM Integration", "Backend Systems"],
+      },
+      {
+        text: "Built an AI-assisted CI workflow that analyzes OpenAPI diffs, detects potential breaking changes, and prepares synchronized updates across application and API specification repositories.",
+        tags: ["OpenAPI", "AI-assisted Engineering", "CI/CD", "GitLab CI", "API Governance", "Automation"],
+      },
+      {
+        text: "Authored 10+ architecture decision records and introduced resilience patterns that improved failure handling across downstream services and event-driven integrations.",
+        tags: ["ADRs", "Circuit Breakers", "Retry Policies", "Azure Service Bus", "Resilience", "Distributed Systems"],
+      },
+      {
+        text: "Led the deprecation of legacy applications and messaging resources, reducing the cloud footprint by 30%+.",
+        tags: ["Cloud Optimization", "Legacy Modernization", "Platform Simplification"],
+      },
+    ],
+  },
+  {
     id: "phreesia",
     role: "Senior Software Engineer",
     company: "Phreesia",
