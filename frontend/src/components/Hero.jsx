@@ -99,7 +99,7 @@ export const Hero = () => (
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.1 }}
-          className="mt-14 flex items-center gap-6 font-mono text-[10px] tracking-[0.2em] text-mute/50"
+          className="mt-14 flex items-center gap-6 font-mono text-[10px] tracking-[0.2em] text-meta"
         >
           <span>{profile.coords}</span>
           <span className="h-px w-10 bg-line" />

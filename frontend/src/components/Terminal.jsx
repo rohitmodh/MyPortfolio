@@ -59,7 +59,7 @@ export const Terminal = () => {
                 <i className="h-2.5 w-2.5 rounded-full bg-[#2a2f36]" />
                 <i className="h-2.5 w-2.5 rounded-full bg-accent/60" />
               </span>
-              <span className="font-mono text-[10px] tracking-[0.2em] text-mute/60">rohit@berlin — zsh</span>
+              <span className="font-mono text-[10px] tracking-[0.2em] text-meta">rohit@berlin — zsh</span>
             </div>
             <div className="min-h-[240px] p-5 font-mono text-[13px] leading-7">
               {done.map((l) => (

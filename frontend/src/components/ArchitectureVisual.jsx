@@ -72,7 +72,7 @@ export const ArchitectureVisual = () => (
           <text x="210" y={n.y - 1} textAnchor="middle" fill="#e8eaed" fontSize="11" fontFamily="Geist Mono, monospace" letterSpacing="2">
             {n.label}
           </text>
-          <text x="210" y={n.y + 13} textAnchor="middle" fill="#8b9199" fontSize="8" fontFamily="Geist Mono, monospace" letterSpacing="1">
+          <text x="210" y={n.y + 13} textAnchor="middle" fill="#9ba3ac" fontSize="8" fontFamily="Geist Mono, monospace" letterSpacing="1">
             {n.meta}
           </text>
           <text x="342" y={n.y + 4} fill="rgba(87,199,255,0.5)" fontSize="8" fontFamily="Geist Mono, monospace">

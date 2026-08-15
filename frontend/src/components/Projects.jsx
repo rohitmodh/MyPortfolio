@@ -13,7 +13,7 @@ const Card = ({ project, onOpen }) => (
     className="group relative flex h-full flex-col border border-line bg-panel/50 p-7 text-left transition-[transform,border-color,background-color] duration-500 hover:-translate-y-1.5 hover:border-accent/40 hover:bg-panel md:p-8"
   >
     <div className="mb-6 flex items-start justify-between gap-4">
-      <span className="font-mono text-xs tracking-[0.25em] text-mute/60">{project.index}</span>
+      <span className="font-mono text-xs tracking-[0.25em] text-dim">{project.index}</span>
       {project.personal && (
         <span className="border border-accent/30 bg-accent-soft px-2 py-0.5 font-mono text-[9px] tracking-[0.2em] text-accent">
           PERSONAL BUILD
@@ -24,7 +24,7 @@ const Card = ({ project, onOpen }) => (
     <h3 className="text-xl font-semibold tracking-tight text-fg transition-colors duration-300 group-hover:text-accent md:text-2xl">
       {project.title}
     </h3>
-    <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-mute/70">{project.tagline.toUpperCase()}</p>
+    <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-meta">{project.tagline.toUpperCase()}</p>
     <p className="mt-4 flex-1 text-sm leading-relaxed text-mute">{project.description}</p>
 
     {project.metric ? (
@@ -51,7 +51,7 @@ const Card = ({ project, onOpen }) => (
 
     <div className="mt-6 flex flex-wrap gap-1.5 opacity-100 transition-[opacity,transform] duration-400 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
       {project.tech.map((t) => (
-        <span key={t} className="border border-line px-2 py-0.5 font-mono text-[9px] tracking-widest text-fg/70">
+        <span key={t} className="border border-line px-2 py-0.5 font-mono text-[9px] tracking-widest text-fg/80">
           {t}
         </span>
       ))}

@@ -11,7 +11,7 @@ export const Section = ({ id, index, label, title, children, className = "" }) =
             </p>
             <h2 className="text-3xl font-semibold tracking-tight text-fg md:text-4xl">{title}</h2>
           </div>
-          <span className="hidden pt-2 font-mono text-[10px] tracking-widest text-mute/60 md:block">
+          <span className="hidden pt-2 font-mono text-[10px] tracking-widest text-dim md:block">
             §{index}
           </span>
         </header>

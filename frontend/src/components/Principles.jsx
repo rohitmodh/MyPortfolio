@@ -13,7 +13,7 @@ export const Principles = () => (
             className="group flex h-full min-h-[190px] flex-col justify-between bg-panel p-7 outline-none transition-colors duration-400 hover:bg-[#12161c] focus-visible:bg-[#12161c]"
           >
             <div className="flex items-start justify-between">
-              <span className="font-mono text-2xl font-light text-mute/40 transition-colors duration-400 group-hover:text-accent group-focus-visible:text-accent">
+              <span className="font-mono text-2xl font-light text-dim transition-colors duration-400 group-hover:text-accent group-focus-visible:text-accent">
                 {p.n}
               </span>
               <span className="h-px w-8 self-center bg-line transition-[width,background-color] duration-500 group-hover:w-14 group-hover:bg-accent/60 group-focus-visible:w-14 group-focus-visible:bg-accent/60" />

@@ -18,7 +18,7 @@ export const Contact = () => (
             I'm most interested in hard backend problems: identity, messaging, platform modernisation, systems
             that have to keep working when everything around them fails.
           </p>
-          <p className="mt-6 font-mono text-xs tracking-[0.2em] text-mute/60">
+          <p className="mt-6 font-mono text-xs tracking-[0.2em] text-meta">
             BERLIN, DE — CET · USUALLY REPLIES WITHIN 24H
           </p>
         </div>
@@ -35,7 +35,7 @@ export const Contact = () => (
               className="group flex items-center justify-between gap-4 bg-panel px-6 py-6 transition-colors duration-300 hover:bg-[#12161c]"
             >
               <div>
-                <p className="font-mono text-[10px] tracking-[0.25em] text-mute/60">{l.label}</p>
+                <p className="font-mono text-[10px] tracking-[0.25em] text-meta">{l.label}</p>
                 <p className="mt-1.5 text-base text-fg transition-colors duration-300 group-hover:text-accent md:text-lg">
                   {l.value}
                 </p>

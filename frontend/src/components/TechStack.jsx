@@ -12,7 +12,7 @@ export const TechStack = () => (
             className="group grid gap-4 border-b border-line py-7 transition-colors duration-400 hover:bg-panel/60 md:grid-cols-[240px_1fr] md:items-baseline md:px-4"
           >
             <div className="flex items-baseline gap-4">
-              <span className="font-mono text-[10px] tracking-widest text-mute/50">
+              <span className="font-mono text-[10px] tracking-widest text-dim">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="font-mono text-xs tracking-[0.25em] text-mute transition-colors duration-300 group-hover:text-accent">
@@ -36,7 +36,7 @@ export const TechStack = () => (
       ))}
     </div>
     <Reveal delay={0.2}>
-      <p className="mt-8 font-mono text-[10px] tracking-[0.2em] text-mute/50">
+      <p className="mt-8 font-mono text-[10px] tracking-[0.2em] text-meta">
         DEPTH OVER BREADTH — NO PERCENTAGE BARS, NO LOGO WALLS
       </p>
     </Reveal>

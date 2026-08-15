@@ -45,7 +45,7 @@ export const About = () => (
           </Reveal>
         ))}
         <Reveal delay={0.25}>
-          <p className="pt-4 font-mono text-xs tracking-[0.2em] text-mute/60">
+          <p className="pt-4 font-mono text-xs tracking-[0.2em] text-meta">
             CURRENTLY: IDENTITY SYSTEMS @ ENPAL — BERLIN
           </p>
         </Reveal>
@@ -58,7 +58,7 @@ export const About = () => (
               data-testid={`about-meta-${m.label.toLowerCase().replace(/\s+/g, "-")}`}
               className="group flex items-baseline justify-between gap-4 bg-panel px-6 py-5 transition-colors duration-300 hover:bg-[#12151a]"
             >
-              <span className="font-mono text-[10px] tracking-widest text-mute/50">
+              <span className="font-mono text-[10px] tracking-widest text-dim">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span className="flex-1 text-right">

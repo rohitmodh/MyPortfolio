@@ -10,12 +10,12 @@ export const Footer = () => (
           <span className="text-accent">]</span>
         </p>
         <p className="mt-2 text-sm text-mute">{profile.name} — Senior Backend Engineer</p>
-        <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-mute/60">{profile.location.toUpperCase()}</p>
+        <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-meta">{profile.location.toUpperCase()}</p>
       </div>
-      <div className="font-mono text-[10px] leading-5 tracking-[0.15em] text-mute/50 md:text-right">
+      <div className="font-mono text-[10px] leading-5 tracking-[0.15em] text-meta md:text-right">
         <p>BUILT WITH REACT · TAILWIND · FRAMER MOTION · LENIS</p>
         <p>NO TRACKERS OF MY OWN · ZERO STOCK PHOTOS</p>
-        <p className="mt-2 text-mute/70">© 2026 {profile.name.toUpperCase()}</p>
+        <p className="mt-2 text-mute">© 2026 {profile.name.toUpperCase()}</p>
       </div>
     </div>
   </footer>

@@ -13,7 +13,7 @@ const Strip = () => (
   <div className="flex shrink-0 items-center">
     {words.map((w) => (
       <span key={w} className="flex items-center">
-        <span className="px-8 font-mono text-xs tracking-[0.3em] text-mute/70">{w}</span>
+        <span className="px-8 font-mono text-xs tracking-[0.3em] text-mute">{w}</span>
         <span className="text-accent/50 text-[8px]">◆</span>
       </span>
     ))}

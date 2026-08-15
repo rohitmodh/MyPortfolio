@@ -39,7 +39,7 @@ const Item = ({ job, open, onToggle }) => (
           />
         </div>
       </div>
-      <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-mute/60">{job.location.toUpperCase()}</p>
+      <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-meta">{job.location.toUpperCase()}</p>
     </button>
 
     <AnimatePresence initial={false}>
