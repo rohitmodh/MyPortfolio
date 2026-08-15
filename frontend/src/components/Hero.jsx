@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, FileDown } from "lucide-react";
-import { ArchitectureVisual } from "./ArchitectureVisual";
 import { profile } from "../data/portfolio";
 
 const lineReveal = (i) => ({
@@ -25,8 +24,8 @@ export const Hero = () => (
       aria-hidden="true"
     />
 
-    <div className="relative mx-auto grid max-w-6xl gap-16 px-6 pb-24 pt-36 md:pt-44 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:pb-32">
-      <div>
+    <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-36 md:pt-44 lg:pb-32">
+      <div className="max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -105,14 +104,6 @@ export const Hero = () => (
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 32 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="hidden lg:block"
-      >
-        <ArchitectureVisual />
-      </motion.div>
     </div>
   </section>
 );
