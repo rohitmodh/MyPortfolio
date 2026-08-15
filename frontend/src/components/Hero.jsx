@@ -24,6 +24,16 @@ export const Hero = () => (
       aria-hidden="true"
     />
 
+    <div
+      className="pointer-events-none absolute bottom-28 right-[7%] top-44 hidden w-px bg-gradient-to-b from-transparent via-white/10 to-transparent xl:block"
+      aria-hidden="true"
+    >
+      <span className="signal-dot absolute left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-accent" />
+      <span className="absolute -top-1 left-3 font-mono text-[9px] tracking-[0.25em] text-dim [writing-mode:vertical-rl]">
+        SIGNAL — NOMINAL
+      </span>
+    </div>
+
     <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-36 md:pt-44 lg:pb-32">
       <div className="max-w-3xl">
         <motion.div

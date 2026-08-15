@@ -10,8 +10,7 @@ export const profile = {
   email: "rohit.modh1602@gmail.com",
   linkedin: "https://linkedin.com/in/rohit-modh",
   github: "https://github.com/rohitmodh",
-  resumeUrl:
-    "https://customer-assets-eiarnc6j.emergentagent.net/job_b89f0269-46e9-4262-bce3-721f04cb92da/artifacts/k3jfup10_Rohit_Modh_Resume.pdf",
+  resumeUrl: "/Rohit_Modh_Resume.pdf",
 };
 
 export const aboutMeta = [

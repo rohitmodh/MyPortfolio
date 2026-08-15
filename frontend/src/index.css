@@ -240,6 +240,26 @@
     background-color: rgba(87, 199, 255, 0.06);
 }
 
+/* ---------- hero signal line ---------- */
+
+.signal-dot {
+    top: 0;
+    box-shadow: 0 0 8px rgba(87, 199, 255, 0.9);
+    animation: signal-travel 7.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes signal-travel {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: calc(100% - 4px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .signal-dot {
+        animation: none !important;
+        opacity: 0;
+    }
+}
+
 /* ---------- reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {
