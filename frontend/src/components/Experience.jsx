@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { Section } from "./Section";
+import { EnpalExperience } from "./EnpalExperience";
 import { experience } from "../data/portfolio";
 
 const Item = ({ job, open, onToggle }) => (
@@ -73,11 +74,15 @@ const Item = ({ job, open, onToggle }) => (
 );
 
 export const Experience = () => {
-  const [openId, setOpenId] = useState("enpal");
+  const [openId, setOpenId] = useState(null);
 
   return (
     <Section id="experience" index="02" label="EXPERIENCE" title="A decade in production.">
-      <div className="relative">
+      <Reveal>
+        <EnpalExperience />
+      </Reveal>
+
+      <div className="relative mt-20">
         <span className="absolute bottom-2 left-[7px] top-2 w-px bg-line" aria-hidden="true" />
         <div className="space-y-12">
           {experience.map((job, i) => (

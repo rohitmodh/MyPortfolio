@@ -30,42 +30,6 @@ export const aboutCopy = [
 
 export const experience = [
   {
-    id: "enpal",
-    role: "Senior Software Engineer",
-    company: "Enpal",
-    period: "2025 — Present",
-    location: "Berlin, Germany",
-    current: true,
-    summary:
-      "Technical anchor for customer identity and platform modernisation across a multi-service energy-tech backend.",
-    achievements: [
-      {
-        text: "Refactored legacy Node.js services to .NET 8, improving p99 API response times by ~40%.",
-        tags: [".NET 8", "Node.js", "Performance"],
-      },
-      {
-        text: "Architected a distributed, multi-site identity-detection system resolving fragmented customer records into unified person identities.",
-        tags: ["Identity Resolution", "Distributed Systems"],
-      },
-      {
-        text: "Built a format-preserving, cryptographic PersonId generation service producing billions of deterministic, collision-resistant identifiers annually.",
-        tags: ["C#", "Bouncy Castle", "MongoDB"],
-      },
-      {
-        text: "Authored 10+ architecture decision records; introduced circuit breakers and retry policies that materially cut downstream service failures.",
-        tags: ["ADRs", "Resilience", "Azure Service Bus"],
-      },
-      {
-        text: "Designed an API contract governance workflow detecting breaking OpenAPI changes and enforcing compatibility across repositories.",
-        tags: ["OpenAPI", "CI/CD", "Governance"],
-      },
-      {
-        text: "Led systematic deprecation of legacy applications and messaging resources, trimming cloud footprint by 30%+.",
-        tags: ["Terraform", "Azure", "Decommissioning"],
-      },
-    ],
-  },
-  {
     id: "phreesia",
     role: "Senior Software Engineer",
     company: "Phreesia",
