@@ -153,119 +153,126 @@ export const experience = [
 
 export const projects = [
   {
-    id: "identity-resolution",
+    id: "multisite-detection",
     index: "01",
-    title: "Identity Resolution",
-    tagline: "Many records. One person.",
+    title: "Multisite Customer Detection",
+    tagline: "Is this lead already our customer?",
     description:
-      "A backend service for resolving multiple global customer identities into a single unified person identity.",
-    tech: [".NET 8", "MongoDB", "Azure Service Bus", "Terraform", "OpenTelemetry"],
-    flow: ["Source Systems", "Service Bus", "Resolution Engine", "Identity Graph", "PersonId"],
+      "A customer-detection workflow combining address normalization, Azure Maps, and CRM intelligence to identify potential multi-site customers from incoming leads.",
+    tech: [".NET", "Azure Maps", "MongoDB", "CRM Integration"],
+    flow: ["Incoming Lead", "Address", "Normalize", "CRM Lookup", "Existing Customer?", "Multisite Detection"],
     detail: {
       problem:
-        "Customer data was fragmented across sites and source systems — the same physical person existed as several unrelated customer records. Support, offers and downstream processes had no reliable way to know two records belonged to one human.",
+        "Leads arrive across channels with raw address data. An incoming lead can belong to a customer Enpal already serves at another site — treated as net-new, it loses all existing customer context and creates duplicates downstream.",
       architecture:
-        "Source systems publish change events to Azure Service Bus. A .NET 8 resolution engine consumes them idempotently, runs a staged matcher pipeline, and maintains an identity graph in MongoDB. Resolved identities emit downstream events so consumers stay eventually consistent without coupling.",
+        "On intake, the lead's raw address is normalized via Azure Maps, the normalized form is looked up against CRM customer records, and the detection decision links the lead to an existing multi-site customer when the evidence holds.",
       decisions: [
-        "Deterministic matching over ML scoring — every merge must be explainable and auditable.",
-        "Event-driven ingestion to decouple resolution latency from source-system availability.",
-        "MongoDB document model for the relationship graph — flexible edges, cheap traversals.",
+        "Normalize before matching — raw address text is never compared directly.",
+        "CRM stays the source of truth; the workflow links leads to customers instead of creating parallel records.",
+        "Ambiguous cases surface for review instead of auto-linking.",
       ],
       challenges:
-        "Conflicting data quality across sources, safe reprocessing of historical backfills, and merge/split semantics when earlier resolutions turn out wrong.",
+        "Address quality varies by channel, and a false positive — attaching a lead to the wrong customer — is costlier than a missed link.",
       implementation:
-        "A pipeline of matchers — exact key, normalized composite, fuzzy-with-constraints — each emitting a confidence verdict. Below threshold, records stay separate; above, identities merge with full lineage kept for reversal.",
+        "A deterministic pipeline in .NET: ingest lead, normalize address, CRM lookup, classify. Mappings persist in MongoDB, and each stage is independently observable so detection quality is measured, not assumed.",
       tradeoffs:
-        "Determinism sacrifices some recall that a learned model might catch. Eventual consistency is accepted everywhere to keep the pipeline available during source outages.",
+        "Conservative matching intentionally misses some legitimate multisite links in exchange for never misattributing a lead.",
       results:
-        "Multisite customer detection running in production; feeds the PersonId generation service and underpins CRM integrations across the platform.",
+        "Multi-site customers are identified from incoming leads at intake instead of being discovered downstream by support or operations.",
     },
   },
   {
-    id: "personid-generator",
+    id: "personid-resolution",
     index: "02",
-    title: "PersonId Generator",
-    tagline: "Deterministic identity at billion scale.",
+    title: "PersonId & Identity Resolution",
+    tagline: "Same input. Same PersonId.",
     description:
-      "A deterministic, collision-resistant identity generation mechanism built on domain identifiers and validation logic.",
-    tech: ["C#", ".NET", "MongoDB", "Bouncy Castle"],
-    flow: ["Domain Identifiers", "Derivation", "Format-Preserving Crypto", "Validation", "PersonId"],
+      "A deterministic identity-generation service producing consistent 10-digit PersonIds — up to 10 billion identifiers within each yearly namespace — unifying fragmented customer identities across systems.",
+    tech: ["Go", "Format-Preserving Encryption", "MongoDB", "Cryptography"],
+    flow: ["Input", "Sequential Identifier", "FPE + Key + Year/Version Tweak", "10-digit PersonId", "Identity Mapping"],
     detail: {
       problem:
-        "Resolved identities needed a stable, globally unique identifier that downstream systems could store and verify — generated deterministically so the same person always derives the same ID, at a volume of billions per year.",
+        "Fragmented customer identities across systems needed one stable identifier — reproducible, human-compatible at 10 digits, and verifiable without a lookup.",
       architecture:
-        "A stateless .NET service derives identifiers from canonical domain inputs using format-preserving cryptography (Bouncy Castle), so outputs fit existing downstream schemas. A validation layer lets any consumer verify an ID without a network call.",
+        "A Go service applies format-preserving encryption over sequential inputs with a key and a year/version-based tweak, deriving deterministic 10-digit PersonIds. Mappings persist in MongoDB for identity resolution.",
       decisions: [
-        "Deterministic derivation instead of random UUIDs — idempotent by construction.",
-        "Format preservation so legacy downstream systems require zero migration.",
-        "Embedded check logic for offline validation and corruption detection.",
+        "FPE over random UUIDs — output stays 10-digit and fits existing schemas.",
+        "Year/version-based tweak namespaces each era — up to 10 billion identifiers per yearly namespace.",
+        "Deterministic by construction: the same input always derives the same PersonId.",
       ],
       challenges:
-        "Collision resistance at billion-per-year volume, key management across environments, and proving determinism under every input-normalisation edge case.",
+        "Guaranteeing determinism across key and version rotations, and proving collision behaviour across the sequential input space of each namespace.",
       implementation:
-        "Canonicalisation of domain identifiers, keyed derivation with format-preserving encryption, and check-digit style validation. Collision behaviour verified with large-scale batch simulations before production rollout.",
+        "A sequential identifier per resolved identity, encrypted with format-preserving encryption keyed with a yearly tweak; the mapping store in MongoDB keeps re-derivation verifiable offline.",
       tradeoffs:
-        "Key rotation is harder than with random IDs — derivation inputs are versioned so historical IDs stay verifiable.",
+        "Sequential inputs simplify determinism but demand strict single-writer discipline for sequence allocation within each namespace.",
       results:
-        "Billions of deterministic, collision-resistant identifiers generated annually; zero collision incidents in production.",
+        "Fragmented records across systems resolve under one reproducible 10-digit PersonId, with each yearly namespace supporting up to 10 billion identifiers.",
     },
   },
   {
-    id: "address-intelligence",
+    id: "address-matching",
     index: "03",
-    title: "Address Intelligence",
-    tagline: "Same place, spelled a hundred ways.",
+    title: "Address Matching & Data Backfill",
+    tagline: "One mapping — live and historical.",
     description:
-      "Address normalization, hashing and deduplication infrastructure for identifying equivalent customer addresses.",
-    tech: [".NET", "MongoDB", "Backfill Orchestration"],
-    flow: ["Raw Addresses", "Normalization", "Canonical Hash", "Dedup Index", "Match API"],
+      "Live and historical address-matching workflows that reconcile normalized customer addresses across MongoDB and CRM systems, including large-scale backfill processing.",
+    tech: ["Go", "MongoDB", "Backfill", "CRM Synchronization"],
+    flow: ["Incoming / Historical", "Normalize", "Hash", "MongoDB Mapping", "CRM Reconciliation"],
     detail: {
       problem:
-        "Addresses entered across channels and years never match literally — abbreviations, local formats, typos. Without equivalence detection, deduplication and identity work built on top of addresses silently fails.",
+        "Address matching had to serve two worlds at once: live requests entering the funnel and years of historical records — and both must converge on the same mapping.",
       architecture:
-        "A normalization pipeline converts raw addresses into a canonical form, hashes the result into a stable equivalence key, and maintains a dedup index in MongoDB. A backfill orchestrator reprocesses historical records in resumable batches.",
+        "Live path: incoming request → normalize → hash → MongoDB mapping → CRM. Historical path: existing records → backfill → the same address mapping → continuous CRM reconciliation as leads progress through the funnel.",
       decisions: [
-        "Normalize-then-hash over pairwise comparison — O(1) lookups instead of O(n²) matching.",
-        "Backfills as resumable, idempotent jobs with checkpoints — safe to interrupt and rerun.",
+        "One canonical normalize-and-hash pipeline shared by live and backfill paths — no divergent logic to reconcile later.",
+        "Backfills as resumable jobs; CRM reconciliation runs continuously instead of as a one-shot migration.",
       ],
       challenges:
-        "Locale-specific address formats, and running a full historical backfill against live production traffic without degrading p99.",
+        "Running large-scale backfill next to live traffic without contention, while CRM state keeps changing underneath it.",
       implementation:
-        "Rule-based normalization stages with a canonical hashing step; throttled backfill workers that yield under production load and checkpoint progress per batch.",
+        "Go services normalize and hash addresses into MongoDB mappings; backfill workers checkpoint batches; a reconciliation loop keeps CRM in sync as leads advance.",
       tradeoffs:
-        "Rule-based normalization needs ongoing locale tuning — accepted in exchange for full explainability of every equivalence decision.",
+        "Continuous reconciliation converges more slowly than a big-bang sync, but it never blocks the funnel and is safe to rerun.",
       results:
-        "Address equivalence detection feeding identity resolution; historical corpus fully backfilled with zero production incidents.",
+        "Live and historical addresses resolve into one mapping, with CRM kept continuously consistent as leads move through the funnel.",
     },
   },
   {
-    id: "dotnet-migration",
+    id: "contract-governance",
     index: "04",
-    title: "Node.js → .NET 8 Migration",
-    tagline: "Legacy runtime, modern throughput.",
+    title: "AI-Assisted API Contract Governance",
+    tagline: "The pipeline owns compatibility.",
     description:
-      "Modernized legacy backend services from Node.js to .NET 8 — measurably faster, cheaper to run, easier to reason about.",
-    tech: [".NET 8", "Node.js", "MongoDB", "OpenTelemetry", "GitHub Actions"],
-    metric: { label: "p99 latency", before: "Node.js baseline", after: ".NET 8", improvement: "~40%" },
-    flow: ["Legacy Node.js", "Strangler Seams", ".NET 8 Services", "Contract Tests", "Cutover"],
+      "An AI-assisted CI workflow that analyzes OpenAPI diffs, detects potential breaking changes, and prepares synchronized updates across application and API specification repositories.",
+    tech: ["OpenAPI", "AI-assisted Engineering", "GitLab CI", "API Governance"],
+    flow: [
+      "Application PR",
+      "Build Pipeline",
+      "OpenAPI Diff",
+      "AI-assisted Analysis",
+      "Breaking Change Detection",
+      "Generated PR + Summary",
+      "API Spec Repository",
+    ],
     detail: {
       problem:
-        "Legacy Node.js services carried years of accumulated coupling — unpredictable p99 latency under load, weak typing at API boundaries, and rising operational cost per request.",
+        "Breaking OpenAPI changes surfaced late — sometimes via consumers. Compatibility enforcement had to move into the delivery pipeline itself.",
       architecture:
-        "Strangler-fig migration: .NET 8 services grew behind stable API contracts while contract tests guaranteed parity. Traffic shifted route-by-route; OpenTelemetry traced both runtimes side-by-side throughout the cutover.",
+        "Every application PR triggers a GitLab CI build that generates an OpenAPI diff. An AI-assisted analysis stage classifies the changes and flags potential breaking changes; automation then prepares a pull request with a change summary in the API specification repository.",
       decisions: [
-        "Incremental cutover behind contracts instead of a big-bang rewrite.",
-        "Performance budgets enforced in CI — regressions blocked at pull request.",
-        "Tracing both runtimes to prove parity before decommissioning.",
+        "The pipeline — not reviewers' memory — owns compatibility enforcement.",
+        "AI assists analysis and summarization; the auditable artifact stays a human-reviewable PR.",
+        "Detection runs on every build, so contract drift is caught at authoring time.",
       ],
       challenges:
-        "Behavioural parity for undocumented edge cases, and maintaining feature velocity while two runtimes coexisted.",
+        "Separating genuinely breaking changes from compatible evolutions, and keeping generated summaries precise enough to review at a glance.",
       implementation:
-        "Route-by-route migration with shadow-traffic comparison, histogram-level latency verification, then legacy decommissioning of code, infrastructure and messaging resources.",
+        "A CI stage emits the spec diff; AI-assisted analysis annotates each change; automation opens a PR with the change summary into the specification repository, keeping cross-repo contracts synchronized.",
       tradeoffs:
-        "Running two stacks temporarily doubled operational surface — the price of zero-downtime certainty.",
+        "Automated detection can flag conservative false positives — acceptable, since a human reviews the generated PR before merge.",
       results:
-        "p99 API response times improved ~40%; legacy services and infrastructure fully decommissioned, simplifying event flows platform-wide.",
+        "Contract compatibility is enforced on every build, with synchronized updates prepared automatically across application and API specification repositories.",
     },
   },
   {
