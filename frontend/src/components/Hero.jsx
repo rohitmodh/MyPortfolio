@@ -101,9 +101,7 @@ export const Hero = () => (
           transition={{ duration: 1, delay: 1.1 }}
           className="mt-14 flex items-center gap-6 font-mono text-[10px] tracking-[0.2em] text-meta"
         >
-          <span>{profile.coords}</span>
-          <span className="h-px w-10 bg-line" />
-          <span>DISTRIBUTED SYSTEMS · .NET · CLOUD</span>
+          <span>BACKEND ENGINEERING — DISTRIBUTED SYSTEMS · API PLATFORMS</span>
         </motion.div>
       </div>
 

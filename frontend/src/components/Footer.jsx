@@ -13,8 +13,7 @@ export const Footer = () => (
         <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-meta">{profile.location.toUpperCase()}</p>
       </div>
       <div className="font-mono text-[10px] leading-5 tracking-[0.15em] text-meta md:text-right">
-        <p>BUILT WITH REACT · TAILWIND · FRAMER MOTION · LENIS</p>
-        <p>NO TRACKERS OF MY OWN · ZERO STOCK PHOTOS</p>
+        <p>REACT · TYPESCRIPT · TAILWIND · FRAMER MOTION</p>
         <p className="mt-2 text-mute">© 2026 {profile.name.toUpperCase()}</p>
       </div>
     </div>

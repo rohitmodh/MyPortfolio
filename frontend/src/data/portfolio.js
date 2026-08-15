@@ -16,10 +16,10 @@ export const profile = {
 
 export const aboutMeta = [
   { value: 10, suffix: "+", label: "Years Experience", numeric: true },
-  { value: "Backend", label: "Engineering Focus" },
-  { value: "Distributed", label: "Systems Design" },
-  { value: "Cloud", label: "Architecture & IaC" },
-  { value: "Production", label: "Systems Ownership" },
+  { value: "Backend", label: "Engineering" },
+  { value: "Distributed", label: "Systems" },
+  { value: "Cloud", label: "Infrastructure" },
+  { value: "Production", label: "Ownership" },
 ];
 
 export const aboutCopy = [
@@ -391,6 +391,7 @@ export const principles = [
     n: "07",
     title: "Test in layers",
     body: "Unit tests for logic, integration tests for boundaries, end-to-end for critical paths, load tests for behaviour under pressure. Each layer catches what the others miss — confidence in a system is built, not assumed.",
+    link: "#enpal-achievement-10",
   },
 ];
 

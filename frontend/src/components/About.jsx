@@ -46,7 +46,7 @@ export const About = () => (
         ))}
         <Reveal delay={0.25}>
           <p className="pt-4 font-mono text-xs tracking-[0.2em] text-meta">
-            CURRENTLY: IDENTITY SYSTEMS @ ENPAL — BERLIN
+            CURRENTLY: SENIOR SOFTWARE ENGINEER @ ENPAL — BERLIN
           </p>
         </Reveal>
       </div>

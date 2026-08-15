@@ -54,7 +54,7 @@ const Item = ({ job, open, onToggle }) => (
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-mute">{job.summary}</p>
           <ul className="mt-5 space-y-3">
             {job.achievements.map((a, i) => (
-              <li key={i} className="group/a relative border-l border-line pl-5 transition-colors duration-300 hover:border-accent/60">
+              <li key={i} id={`${job.id}-achievement-${i}`} className="group/a relative scroll-mt-28 border-l border-line pl-5 transition-colors duration-300 hover:border-accent/60">
                 <p className="text-sm leading-relaxed text-fg/90">{a.text}</p>
                 <div className="mt-1.5 flex flex-wrap gap-1.5 opacity-100 transition-[opacity,transform] duration-300 md:translate-y-1 md:opacity-0 md:group-hover/a:translate-y-0 md:group-hover/a:opacity-100">
                   {a.tags.map((t) => (

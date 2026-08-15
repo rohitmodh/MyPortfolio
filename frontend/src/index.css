@@ -230,6 +230,16 @@
     stroke: rgba(87, 199, 255, 0.7);
 }
 
+/* ---------- deep-link target highlight ---------- */
+
+[id^="enpal-achievement-"] {
+    transition: border-color 0.4s ease, background-color 0.6s ease;
+}
+[id^="enpal-achievement-"]:target {
+    border-left-color: rgba(87, 199, 255, 0.9);
+    background-color: rgba(87, 199, 255, 0.06);
+}
+
 /* ---------- reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {

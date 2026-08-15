@@ -15,11 +15,11 @@ export const Contact = () => (
       <Reveal>
         <div>
           <p className="max-w-md text-base leading-relaxed text-mute md:text-lg">
-            I'm most interested in hard backend problems: identity, messaging, platform modernisation, systems
-            that have to keep working when everything around them fails.
+            Open to senior backend engineering roles focused on distributed systems, scalable APIs, and
+            production-grade platforms.
           </p>
           <p className="mt-6 font-mono text-xs tracking-[0.2em] text-meta">
-            BERLIN, DE — CET · USUALLY REPLIES WITHIN 24H
+            BERLIN, DE · INDIA · OPEN TO OPPORTUNITIES
           </p>
         </div>
       </Reveal>
