@@ -36,6 +36,7 @@ export const ProjectModal = ({ project, onClose }) => {
         >
           <div className="absolute inset-0 bg-base/85 backdrop-blur-sm" onClick={onClose} />
           <motion.article
+            data-lenis-prevent
             initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 40, opacity: 0 }}
