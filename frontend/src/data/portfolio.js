@@ -23,9 +23,10 @@ export const aboutMeta = [
 ];
 
 export const aboutCopy = [
-  "I design and operate the backend systems other people's products depend on. Over the past decade I've owned distributed services across their full lifecycle — API contracts, messaging topologies, cloud infrastructure, deployment pipelines and the observability that keeps them honest in production.",
-  "My current work at Enpal is identity: resolving fragmented customer records scattered across systems into a single, trustworthy person identity — deterministically, at billions of records per year, in a way an auditor can reason about.",
-  "I optimise for boring reliability. Predictable latency, explicit failure modes, clean operational handoffs. The best architecture is the one a team can run at 3 a.m. without me in the room.",
+  "I build and operate backend systems across their full lifecycle — from API and service design to messaging, cloud infrastructure, deployment, testing, and production observability. Over the past decade, I’ve worked across polyglot backend environments, solving problems around distributed systems, data consistency, customer identity, and platform reliability.",
+  "At Enpal, my work spans customer identity and backend platforms, while driving technical architecture through RFCs and architecture decisions, translating ambiguous product requirements into maintainable systems, and collaborating asynchronously across engineering and product teams.",
+  "I also own the path from code to production — improving CI/CD, managing deployments for my team, and building confidence through layered testing across unit, integration, end-to-end, and load testing. I look beyond individual services as well, analyzing legacy systems and infrastructure, simplifying operational dependencies, and improving the cloud footprint where the engineering trade-offs make sense.",
+  "I optimize for systems that are predictable under failure, observable in production, well tested, and straightforward for teams to evolve.",
 ];
 
 export const experience = [
@@ -70,6 +71,18 @@ export const experience = [
       {
         text: "Led the deprecation of legacy applications and messaging resources, reducing the cloud footprint by 30%+.",
         tags: ["Cloud Optimization", "Legacy Modernization", "Platform Simplification"],
+      },
+      {
+        text: "Redesigned sequential CI pipelines into parallel multi-stage workflows using build artifacts, reducing pull-request build and merge time from 12–14 minutes to 5.5 minutes.",
+        tags: ["CI/CD", "GitLab CI", "Parallel Jobs", "Build Artifacts", "Pipeline Optimization", "Developer Experience"],
+      },
+      {
+        text: "Automated development and staging deployments after pull requests are merged, replacing manual environment-specific tagging and reducing repetitive developer effort.",
+        tags: ["CI/CD", "Deployment Automation", "GitLab CI", "DevOps", "Developer Experience", "Release Engineering"],
+      },
+      {
+        text: "Established layered test coverage across unit, integration, end-to-end, and load testing for backend services with CRM and external-system dependencies.",
+        tags: ["Test Pyramid", "Unit Testing", "Integration Testing", "E2E Testing", "Load Testing", "Quality Engineering"],
       },
     ],
   },

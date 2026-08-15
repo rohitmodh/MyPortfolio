@@ -51,7 +51,7 @@ export const About = () => (
         </Reveal>
       </div>
 
-      <div className="space-y-px border border-line bg-line/40">
+      <div className="space-y-px self-start border border-line bg-line/40">
         {aboutMeta.map((m, i) => (
           <Reveal key={m.label} delay={i * 0.06} y={16}>
             <div
