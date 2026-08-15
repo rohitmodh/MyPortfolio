@@ -32,16 +32,18 @@ const Card = ({ project, onOpen }) => (
         <div className="flex items-center justify-between gap-4">
           <div className="flex-1">
             <div className="h-1.5 w-full bg-mute/30" />
-            <p className="mt-1 font-mono text-[9px] tracking-widest text-mute/70">NODE.JS</p>
+            <p className="mt-1 font-mono text-[9px] tracking-widest text-mute/70">{project.metric.before.toUpperCase()}</p>
           </div>
           <span className="font-mono text-[10px] text-mute">→</span>
           <div className="flex-1">
-            <div className="h-1.5 w-3/5 bg-accent" />
-            <p className="mt-1 font-mono text-[9px] tracking-widest text-accent">.NET 8</p>
+            <div className="h-1.5 bg-accent" style={{ width: project.metric.afterWidth || "60%" }} />
+            <p className="mt-1 font-mono text-[9px] tracking-widest text-accent">{project.metric.after.toUpperCase()}</p>
           </div>
           <span className="text-2xl font-semibold tracking-tight text-fg">{project.metric.improvement}</span>
         </div>
-        <p className="mt-2 font-mono text-[9px] tracking-[0.2em] text-mute/60">P99 LATENCY — BEFORE → AFTER</p>
+        <p className="mt-2 font-mono text-[9px] tracking-[0.2em] text-mute/60">
+          {project.metric.label.toUpperCase()} — BEFORE → AFTER
+        </p>
       </div>
     ) : (
       <div className="mt-6 max-w-[220px]">

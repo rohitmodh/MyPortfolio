@@ -76,7 +76,7 @@ export const ProjectModal = ({ project, onClose }) => {
                     <div>
                       <motion.div
                         initial={{ width: "100%" }}
-                        whileInView={{ width: "60%" }}
+                        whileInView={{ width: project.metric.afterWidth || "60%" }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
                         className="h-2 bg-accent"

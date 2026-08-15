@@ -319,6 +319,41 @@ export const projects = [
         "Shipped as production-ready software: benchmarks, CI, observability and containerized deployment. Cut simulated infrastructure exhaustion by 40%. Also my forcing function for going deep on Go and its concurrency model.",
     },
   },
+  {
+    id: "ci-pipeline",
+    index: "06",
+    title: "CI Pipeline Parallelization",
+    tagline: "Feedback loops, measured in minutes saved.",
+    description:
+      "Redesigned sequential CI pipelines into parallel multi-stage workflows using build artifacts, cutting pull-request build and merge time from 12–14 minutes to 5.5 minutes.",
+    tech: ["GitLab CI", "CI/CD", "Pipeline Optimization", "Build Artifacts", "Deployment Automation"],
+    metric: {
+      label: "PR build + merge time",
+      before: "Sequential · 12–14 min",
+      after: "Parallel · 5.5 min",
+      improvement: "~60%",
+      afterWidth: "42%",
+    },
+    flow: ["Pull Request", "Parallel Stages", "Build Artifacts", "Test & Package", "Merge — 5.5 min"],
+    detail: {
+      problem:
+        "Pull-request pipelines ran sequentially — build, test, package, one stage at a time. Every PR waited 12–14 minutes for build and merge, and the wait compounded across a team merging all day.",
+      architecture:
+        "The pipeline was redesigned into parallel multi-stage workflows on GitLab CI: independent jobs run concurrently, and build artifacts are passed between stages so downstream jobs reuse outputs instead of rebuilding them.",
+      decisions: [
+        "Parallelize by dependency graph, not by guesswork — jobs run concurrently only when their inputs allow it.",
+        "Artifacts as the handoff between stages — each stage builds on previous output, nothing is recomputed.",
+      ],
+      challenges:
+        "Untangling hidden stage dependencies that made naive parallelization flaky, and keeping artifact passing deterministic across runners.",
+      implementation:
+        "Mapped the existing sequential pipeline into a dependency graph, split it into parallel stages with explicit artifact contracts, and validated timings against real pull-request traffic before rollout.",
+      tradeoffs:
+        "Parallel stages consume more concurrent runners — an infrastructure cost traded directly for developer time.",
+      results:
+        "Pull-request build and merge time dropped from 12–14 minutes to 5.5 minutes, shortening the feedback loop on every change the team ships.",
+    },
+  },
 ];
 
 export const principles = [
@@ -352,13 +387,22 @@ export const principles = [
     title: "Optimize for maintainability",
     body: "Code is read far more than it runs. Clear boundaries, honest naming and written ADRs let the next engineer move faster than I did.",
   },
+  {
+    n: "07",
+    title: "Test in layers",
+    body: "Unit tests for logic, integration tests for boundaries, end-to-end for critical paths, load tests for behaviour under pressure. Each layer catches what the others miss — confidence in a system is built, not assumed.",
+  },
 ];
 
 export const stack = [
-  { id: "languages", label: "Languages", items: ["C#", "TypeScript", "JavaScript", "Go"] },
-  { id: "backend", label: "Backend", items: [".NET", "Node.js", "REST", "Microservices", "FastEndpoints"] },
-  { id: "data", label: "Data & Messaging", items: ["MongoDB", "MySQL", "Redis", "Kafka", "RabbitMQ"] },
+  { id: "languages", label: "Languages", items: ["Go", "C#", "TypeScript", "JavaScript"] },
+  { id: "backend", label: "Backend & APIs", items: [".NET", "Node.js", "REST", "Microservices", "FastEndpoints", "gRPC", "Azure Functions"] },
+  { id: "distributed", label: "Distributed Systems", items: ["Distributed Systems", "Event-Driven Architecture", "Message Queues", "Resilience", "Service-to-Service Communication"] },
+  { id: "data", label: "Data & Messaging", items: ["MongoDB", "MySQL", "Redis", "Kafka", "RabbitMQ", "Azure Service Bus"] },
   { id: "cloud", label: "Cloud & Infra", items: ["AWS", "Azure", "GCP", "Terraform", "Docker"] },
+  { id: "testing", label: "Testing & Quality", items: ["Unit Testing", "Integration Testing", "E2E Testing", "Load Testing", "Test Pyramid"] },
+  { id: "cicd", label: "CI/CD & Delivery", items: ["GitLab CI", "CI/CD", "Pipeline Optimization", "Build Artifacts", "Deployment Automation"] },
+  { id: "architecture", label: "Architecture", items: ["API Design", "OpenAPI", "Architecture Decisions", "System Design", "Legacy Modernization", "Cloud Optimization"] },
   { id: "observability", label: "Observability", items: ["OpenTelemetry", "Datadog", "Grafana"] },
 ];
 
@@ -368,6 +412,8 @@ export const terminalLines = [
   { cmd: "currently-learning", out: "go + concurrency" },
   { cmd: "architecture", out: "microservices / event-driven" },
   { cmd: "location", out: "berlin, de" },
+  { cmd: "deployments", out: "automated — merge → dev/staging" },
+  { cmd: "pipeline", out: "parallel · 12–14min → 5.5min" },
 ];
 
 export const navLinks = [

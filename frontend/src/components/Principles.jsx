@@ -6,7 +6,12 @@ export const Principles = () => (
   <Section id="engineering" index="04" label="ENGINEERING" title="How I think about systems">
     <div className="grid gap-px border border-line bg-line/40 sm:grid-cols-2 lg:grid-cols-3">
       {principles.map((p, i) => (
-        <Reveal key={p.n} delay={(i % 3) * 0.06} y={18} className="h-full">
+        <Reveal
+          key={p.n}
+          delay={(i % 3) * 0.06}
+          y={18}
+          className={`h-full ${i === principles.length - 1 && principles.length % 3 !== 0 ? "sm:col-span-2 lg:col-span-3" : ""}`}
+        >
           <div
             data-testid={`principle-${p.n}`}
             tabIndex={0}
