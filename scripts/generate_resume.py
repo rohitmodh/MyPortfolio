@@ -151,9 +151,9 @@ pdf.cell(0, 5.5, "Senior Backend Engineer  ·  Distributed Systems · Cloud · M
 pdf.ln(6.5)
 pdf.set_font("vera", "", 8.5)
 pdf.set_text_color(80)
-pdf.cell(0, 4.5, "Berlin, Germany  ·  rohit.modh1602@gmail.com  ·  linkedin.com/in/rohit-modh  ·  github.com/rohitmodh")
+pdf.cell(0, 4.5, "Berlin, Germany  ·  rohit.modh1602@gmail.com  ·  linkedin.com/in/rohit-modh  ·  github.com/rohitmodh  ·  rohit.modh.workers.dev")
 pdf.ln(5)
-pdf.cell(0, 4.5, "Open to senior backend engineering roles - Berlin, DE · India · Remote")
+pdf.cell(0, 4.5, "Open to senior backend engineering roles - India · Remote")
 pdf.ln(2)
 
 section("Summary")
