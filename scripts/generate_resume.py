@@ -116,7 +116,7 @@ W = 178
 
 
 def section(title):
-    pdf.ln(2)
+    pdf.ln(3)
     pdf.set_font("vera", "B", 10)
     pdf.set_text_color(18, 56, 104)
     pdf.cell(0, 5.5, title.upper())
@@ -124,20 +124,20 @@ def section(title):
     pdf.set_draw_color(18, 56, 104)
     pdf.set_line_width(0.3)
     pdf.line(15, pdf.get_y(), 195, pdf.get_y())
-    pdf.ln(1.6)
+    pdf.ln(2.4)
     pdf.set_text_color(35)
 
 
 def body(text, size=8.6, style=""):
     pdf.set_font("vera", style, size)
-    pdf.multi_cell(0, 4.0, text, new_x="LMARGIN", new_y="NEXT")
+    pdf.multi_cell(0, 4.2, text, new_x="LMARGIN", new_y="NEXT")
 
 
 def bullet(text):
     pdf.set_font("vera", "", 8.6)
     pdf.set_x(17)
-    pdf.multi_cell(W - 2, 4.0, "-  " + text, new_x="LMARGIN", new_y="NEXT")
-    pdf.ln(0.2)
+    pdf.multi_cell(W - 2, 4.2, "-  " + text, new_x="LMARGIN", new_y="NEXT")
+    pdf.ln(0.5)
 
 
 # Header
@@ -156,7 +156,7 @@ pdf.ln(4.6)
 pdf.cell(0, 4.4, "linkedin.com/in/rohit-modh · github.com/rohitmodh")
 pdf.ln(4.6)
 pdf.cell(0, 4.4, "Open to senior backend engineering roles - India · Remote")
-pdf.ln(1)
+pdf.ln(3.5)
 
 section("Summary")
 body(SUMMARY)
@@ -170,30 +170,30 @@ for job in EXPERIENCE:
     pdf.set_text_color(90)
     pdf.multi_cell(0, 4.0, job["meta"], new_x="LMARGIN", new_y="NEXT")
     pdf.set_text_color(35)
-    pdf.ln(0.2)
+    pdf.ln(0.4)
     body(job["summary"], size=8.6, style="I")
-    pdf.ln(0.5)
+    pdf.ln(0.9)
     for b in job["bullets"]:
         bullet(b)
-    pdf.ln(1)
+    pdf.ln(1.8)
 
 section("Selected Projects")
 for title, desc in PROJECTS:
     pdf.set_x(17)
     pdf.set_font("vera", "B", 8.6)
-    pdf.write(4.0, f"{title} - ")
+    pdf.write(4.2, f"{title} - ")
     pdf.set_font("vera", "", 8.6)
-    pdf.write(4.0, desc)
-    pdf.ln(4.8)
+    pdf.write(4.2, desc)
+    pdf.ln(5.6)
 
 section("Engineering Stack")
 for label, items in STACK:
     pdf.set_font("vera", "B", 8.6)
     pdf.set_x(17)
-    pdf.cell(40, 4.0, label)
+    pdf.cell(40, 4.2, label)
     pdf.set_font("vera", "", 8.6)
-    pdf.multi_cell(0, 4.0, items, new_x="LMARGIN", new_y="NEXT")
-    pdf.ln(0.3)
+    pdf.multi_cell(0, 4.2, items, new_x="LMARGIN", new_y="NEXT")
+    pdf.ln(0.7)
 
 section("Education & Certifications")
 bullet("B.Tech, Computer Science - Lovely Professional University, 2012 - 2016")
