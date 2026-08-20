@@ -273,6 +273,9 @@
     .caret::after {
         animation: none !important;
     }
+    .packet {
+        display: none;
+    }
     .noise-overlay {
         display: none;
     }

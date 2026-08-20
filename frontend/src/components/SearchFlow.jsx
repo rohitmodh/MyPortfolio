@@ -25,9 +25,20 @@ export const SearchFlow = () => (
     </div>
 
     <svg viewBox="0 0 44 64" className="h-14 w-10 shrink-0" aria-hidden="true">
-      <path d="M2 10 C 22 10 22 32 42 32" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1" className="flow-line" />
-      <path d="M2 32 H 42" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1" className="flow-line" />
-      <path d="M2 54 C 22 54 22 32 42 32" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1" className="flow-line" />
+      <path id="fan-a" d="M2 10 C 22 10 22 32 42 32" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1" className="flow-line" />
+      <path id="fan-b" d="M2 32 H 42" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1" className="flow-line" />
+      <path id="fan-c" d="M2 54 C 22 54 22 32 42 32" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1" className="flow-line" />
+      {[
+        { href: "#fan-a", begin: "0s" },
+        { href: "#fan-b", begin: "0.7s" },
+        { href: "#fan-c", begin: "1.4s" },
+      ].map((p) => (
+        <circle key={p.href} r="2" fill="#57c7ff" className="packet">
+          <animateMotion dur="2.1s" begin={p.begin} repeatCount="indefinite">
+            <mpath href={p.href} />
+          </animateMotion>
+        </circle>
+      ))}
     </svg>
 
     <div className="flex items-center">

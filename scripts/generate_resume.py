@@ -23,6 +23,7 @@ EXPERIENCE = [
             "multi-service energy-tech backend."
         ),
         "bullets": [
+            "Built C# ingestion consumers processing events from both Azure Event Hub and Kafka, mapping heterogeneous source payloads into a shared canonical model and writing the resulting Elasticsearch index-population pipeline for a distributed, multi-site customer identity platform.",
             "Designed a customer-detection workflow combining address normalization, Azure Maps, and CRM intelligence to identify potential multi-site customers from incoming leads.",
             "Designed a deterministic identity-generation service producing consistent 10-digit PersonIds, supporting up to 10 billion identifiers within each yearly namespace for reliable customer identity resolution.",
             "Built live and historical address-matching workflows that reconcile normalized customer addresses across MongoDB and CRM systems, including large-scale backfill processing.",

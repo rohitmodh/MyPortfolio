@@ -53,7 +53,7 @@ export const experience = [
       },
       {
         text: "Built live and historical address-matching workflows that reconcile normalized customer addresses across MongoDB and CRM systems, including large-scale backfill processing.",
-        tags: ["Go", "MongoDB", "Backfill", "Data Consistency", "CRM Synchronization", "Data Reconciliation"],
+        tags: [".NET", "MongoDB", "Backfill", "Data Consistency", "CRM Synchronization", "Data Reconciliation"],
       },
       {
         text: "Extended a reusable domain-ID generation platform to support additional consumers while maintaining compatibility across existing services.",
@@ -278,7 +278,7 @@ export const projects = [
     tagline: "One mapping — live and historical.",
     description:
       "Live and historical address-matching workflows that reconcile normalized customer addresses across MongoDB and CRM systems, including large-scale backfill processing.",
-    tech: ["Go", "MongoDB", "Backfill", "CRM Synchronization"],
+    tech: [".NET", "MongoDB", "Backfill", "CRM Synchronization"],
     flow: ["Incoming / Historical", "Normalize", "Hash", "MongoDB Mapping", "CRM Reconciliation"],
     detail: {
       problem:
@@ -292,7 +292,7 @@ export const projects = [
       challenges:
         "Running large-scale backfill next to live traffic without contention, while CRM state keeps changing underneath it.",
       implementation:
-        "Go services normalize and hash addresses into MongoDB mappings; backfill workers checkpoint batches; a reconciliation loop keeps CRM in sync as leads advance.",
+        ".NET services normalize and hash addresses into MongoDB mappings; backfill workers checkpoint batches; a reconciliation loop keeps CRM in sync as leads advance.",
       tradeoffs:
         "Continuous reconciliation converges more slowly than a big-bang sync, but it never blocks the funnel and is safe to rerun.",
       results:
