@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, ArrowUpRight } from "lucide-react";
 import { FlowDiagram } from "./FlowDiagram";
+import { SearchFlow } from "./SearchFlow";
 
 const Block = ({ title, children }) => (
   <div>
@@ -122,7 +123,13 @@ export const ProjectModal = ({ project, onClose }) => {
               {project.horizontal && (
                 <Block title="Flow">
                   <div className="group border border-line bg-base/50 p-4">
-                    <FlowDiagram nodes={project.flow} horizontal />
+                    {project.flowType === "search" ? (
+                      <div className="overflow-x-auto">
+                        <SearchFlow />
+                      </div>
+                    ) : (
+                      <FlowDiagram nodes={project.flow} horizontal />
+                    )}
                     {project.flowNote && (
                       <p className="mt-3 border-t border-line pt-2.5 font-mono text-[9px] leading-4 tracking-widest text-mute/80">
                         {project.flowNote}

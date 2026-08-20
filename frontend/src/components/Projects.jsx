@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { Section } from "./Section";
 import { FlowDiagram } from "./FlowDiagram";
+import { SearchFlow } from "./SearchFlow";
 import { ProjectModal } from "./ProjectModal";
 import { projects } from "../data/portfolio";
 
@@ -46,8 +47,8 @@ const Card = ({ project, onOpen }) => (
         </p>
       </div>
     ) : project.horizontal ? (
-      <div className="mt-6">
-        <FlowDiagram nodes={project.flow} compact horizontal />
+      <div className="mt-6 overflow-x-auto">
+        {project.flowType === "search" ? <SearchFlow /> : <FlowDiagram nodes={project.flow} compact horizontal />}
       </div>
     ) : (
       <div className="mt-6 max-w-[220px]">
@@ -77,7 +78,7 @@ export const Projects = () => {
     <Section id="projects" index="03" label="PROJECTS" title="Systems I've designed and run.">
       <div className="grid gap-5 md:grid-cols-2">
         {projects.map((p, i) => (
-          <Reveal key={p.id} delay={(i % 2) * 0.08} className={i === projects.length - 1 ? "md:col-span-2" : ""}>
+          <Reveal key={p.id} delay={(i % 2) * 0.08} className={p.horizontal ? "md:col-span-2" : ""}>
             <Card project={p} onOpen={setActive} />
           </Reveal>
         ))}
