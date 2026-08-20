@@ -124,9 +124,7 @@ export const ProjectModal = ({ project, onClose }) => {
                 <Block title="Flow">
                   <div className="group border border-line bg-base/50 p-4">
                     {project.flowType === "search" ? (
-                      <div className="overflow-x-auto">
-                        <SearchFlow />
-                      </div>
+                      <SearchFlow />
                     ) : (
                       <FlowDiagram nodes={project.flow} horizontal />
                     )}

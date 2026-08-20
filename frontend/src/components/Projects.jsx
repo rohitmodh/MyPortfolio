@@ -47,7 +47,7 @@ const Card = ({ project, onOpen }) => (
         </p>
       </div>
     ) : project.horizontal ? (
-      <div className="mt-6 overflow-x-auto">
+      <div className="mt-6">
         {project.flowType === "search" ? <SearchFlow /> : <FlowDiagram nodes={project.flow} compact horizontal />}
       </div>
     ) : (

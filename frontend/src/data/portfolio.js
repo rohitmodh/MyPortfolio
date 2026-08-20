@@ -49,7 +49,7 @@ export const experience = [
       },
       {
         text: "Designed a deterministic identity-generation service producing consistent 10-digit PersonIds, supporting up to 10 billion identifiers within each yearly namespace for reliable customer identity resolution.",
-        tags: ["Go", "Format-Preserving Encryption", "MongoDB", "Cryptography", "Identity Resolution", "Deterministic Systems"],
+        tags: [".NET", "Format-Preserving Encryption", "MongoDB", "Cryptography", "Identity Resolution", "Deterministic Systems"],
       },
       {
         text: "Built live and historical address-matching workflows that reconcile normalized customer addresses across MongoDB and CRM systems, including large-scale backfill processing.",
@@ -249,13 +249,13 @@ export const projects = [
     tagline: "Same input. Same PersonId.",
     description:
       "A deterministic identity-generation service producing consistent 10-digit PersonIds — up to 10 billion identifiers within each yearly namespace — unifying fragmented customer identities across systems.",
-    tech: ["Go", "Format-Preserving Encryption", "MongoDB", "Cryptography"],
+    tech: [".NET", "Format-Preserving Encryption", "MongoDB", "Cryptography"],
     flow: ["Input", "Sequential Identifier", "FPE + Key + Year/Version Tweak", "10-digit PersonId", "Identity Mapping"],
     detail: {
       problem:
         "Fragmented customer identities across systems needed one stable identifier — reproducible, human-compatible at 10 digits, and verifiable without a lookup.",
       architecture:
-        "A Go service applies format-preserving encryption over sequential inputs with a key and a year/version-based tweak, deriving deterministic 10-digit PersonIds. Mappings persist in MongoDB for identity resolution.",
+        "A .NET service applies format-preserving encryption over sequential inputs with a key and a year/version-based tweak, deriving deterministic 10-digit PersonIds. Mappings persist in MongoDB for identity resolution.",
       decisions: [
         "FPE over random UUIDs — output stays 10-digit and fits existing schemas.",
         "Year/version-based tweak namespaces each era — up to 10 billion identifiers per yearly namespace.",
