@@ -83,6 +83,10 @@ export const experience = [
         text: "Established layered test coverage across unit, integration, end-to-end, and load testing for backend services with CRM and external-system dependencies.",
         tags: ["Test Pyramid", "Unit Testing", "Integration Testing", "E2E Testing", "Load Testing", "Quality Engineering"],
       },
+      {
+        text: "Built an event-driven customer search platform mapping CRM events from multiple sources into one canonical model in Elasticsearch — searchable by Global Customer ID, Sign-up ID, Order Number, and PersonId, with as-you-type name search.",
+        tags: [".NET", "Elasticsearch", "Azure Event Hub", "Kafka", "Canonical Model", "Search"],
+      },
     ],
   },
   {
@@ -351,6 +355,49 @@ export const projects = [
         "Parallel stages consume more concurrent runners — an infrastructure cost traded directly for developer time.",
       results:
         "Pull-request build and merge time dropped from 12–14 minutes to 5.5 minutes, shortening the feedback loop on every change the team ships.",
+    },
+  },
+  {
+    id: "unified-customer-search",
+    index: "07",
+    title: "Unified Customer Search",
+    tagline: "Many CRMs. One canonical customer.",
+    description:
+      "An event-driven search platform that maps customer events from multiple CRMs into one canonical model in Elasticsearch — searchable by Global Customer ID, Sign-up ID, Order Number, and PersonId, with as-you-type name search.",
+    tech: [
+      ".NET",
+      "Azure Event Hub",
+      "Kafka",
+      "CRM Integration",
+      "Background Services",
+      "Batch Processing",
+      "Elasticsearch",
+      "Bulk APIs",
+      "Resiliency",
+    ],
+    horizontal: true,
+    flow: ["CRM Events", "Ingestion (.NET)", "Field Mapping", "Canonical Model", "Elasticsearch", "Search API"],
+    flowNote:
+      "KEYWORD: GLOBAL CUSTOMER ID · SIGN-UP ID · ORDER NUMBER · PERSONID — SEARCH-AS-YOU-TYPE: FIRST & LAST NAME",
+    detail: {
+      problem:
+        "Customer events arrive from multiple CRMs, each with its own schema and identifier conventions. Without a shared structure, no system could answer a simple question — find this customer — consistently across all of them.",
+      architecture:
+        "CRM events stream through Azure Event Hub and Kafka into .NET ingestion background services. Each event is mapped — its identifiers and a core set of fields — into one canonical customer model, so every CRM speaks the same structure. Canonical documents are batch-processed and indexed into Elasticsearch via the bulk APIs, then served through a search API: exact identifier lookups on keyword fields, plus search-as-you-type on first and last name.",
+      decisions: [
+        "Canonical model as the contract — every CRM maps into one structure instead of building N×N integrations.",
+        "Elasticsearch keyword type for identifiers (Global Customer ID, Sign-up ID, Order Number, PersonId) — exact, deterministic matches with no analyzer interference.",
+        "search-as-you-type for first and last name — instant prefix matching for humans, without compromising identifier precision.",
+        "Bulk API batch indexing over per-event writes — throughput without pressuring the ingestion hot path.",
+      ],
+      challenges:
+        "Mapping inconsistent CRM schemas into one model without losing meaning; keeping ingestion resilient under event spikes; and keeping deterministic IDs aligned with the PersonId generator as events arrive out of order.",
+      implementation:
+        ".NET background services consume Event Hub and Kafka topics, normalize and map each payload into the canonical model, derive deterministic IDs linked to the PersonId generator, and bulk-index into Elasticsearch. Retry policies and circuit breakers protect the pipeline end to end.",
+      tradeoffs:
+        "A canonical model is a deliberate compromise — it holds the shared core of every CRM, not every source-specific field. Accepted in exchange for one searchable structure across all sources.",
+      results:
+        "One search surface across every CRM: exact lookup by Global Customer ID, Sign-up ID, Order Number or PersonId, plus as-you-type name search — fed by a resilient, event-driven ingestion pipeline built entirely in .NET.",
     },
   },
 ];

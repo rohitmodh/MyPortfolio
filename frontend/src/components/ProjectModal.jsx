@@ -92,7 +92,7 @@ export const ProjectModal = ({ project, onClose }) => {
                 </div>
               )}
 
-              <div className="grid gap-10 md:grid-cols-[1fr_220px]">
+              <div className={`grid gap-10 ${project.horizontal ? "" : "md:grid-cols-[1fr_220px]"}`}>
                 <div className="space-y-10">
                   <Block title="Problem">
                     <p className="text-sm leading-relaxed text-fg/85">{project.detail.problem}</p>
@@ -111,11 +111,26 @@ export const ProjectModal = ({ project, onClose }) => {
                     </ul>
                   </Block>
                 </div>
-                <div className="group">
-                  <h4 className="mb-3 font-mono text-[10px] tracking-[0.25em] text-mute">FLOW</h4>
-                  <FlowDiagram nodes={project.flow} compact />
-                </div>
+                {!project.horizontal && (
+                  <div className="group">
+                    <h4 className="mb-3 font-mono text-[10px] tracking-[0.25em] text-mute">FLOW</h4>
+                    <FlowDiagram nodes={project.flow} compact />
+                  </div>
+                )}
               </div>
+
+              {project.horizontal && (
+                <Block title="Flow">
+                  <div className="group border border-line bg-base/50 p-4">
+                    <FlowDiagram nodes={project.flow} horizontal />
+                    {project.flowNote && (
+                      <p className="mt-3 border-t border-line pt-2.5 font-mono text-[9px] leading-4 tracking-widest text-mute/80">
+                        {project.flowNote}
+                      </p>
+                    )}
+                  </div>
+                </Block>
+              )}
 
               <Block title="Challenges">
                 <p className="text-sm leading-relaxed text-fg/85">{project.detail.challenges}</p>

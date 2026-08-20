@@ -45,6 +45,10 @@ const Card = ({ project, onOpen }) => (
           {project.metric.label.toUpperCase()} — BEFORE → AFTER
         </p>
       </div>
+    ) : project.horizontal ? (
+      <div className="mt-6">
+        <FlowDiagram nodes={project.flow} compact horizontal />
+      </div>
     ) : (
       <div className="mt-6 max-w-[220px]">
         <FlowDiagram nodes={project.flow.slice(0, 3)} compact />
