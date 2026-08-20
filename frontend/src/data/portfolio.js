@@ -190,7 +190,7 @@ export const projects = [
     flowType: "search",
     flow: ["CRM Events", "Ingestion (.NET)", "Field Mapping", "Canonical Model", "Elasticsearch", "Search API"],
     flowNote:
-      "KEYWORD: GLOBAL CUSTOMER ID · SIGN-UP ID · ORDER NUMBER · PERSONID — SEARCH-AS-YOU-TYPE: FIRST & LAST NAME",
+      "KEYWORD: GLOBAL CUSTOMER ID · SIGN-UP ID · ORDER NUMBER · PERSONID\nSEARCH-AS-YOU-TYPE: FIRST & LAST NAME",
     detail: {
       problem:
         "Customer events arrive from multiple CRMs, each with its own schema and identifier conventions. Without a shared structure, no system could answer a simple question — find this customer — consistently across all of them.",

@@ -131,7 +131,7 @@ export const ProjectModal = ({ project, onClose }) => {
                       <FlowDiagram nodes={project.flow} horizontal />
                     )}
                     {project.flowNote && (
-                      <p className="mt-3 border-t border-line pt-2.5 font-mono text-[9px] leading-4 tracking-widest text-mute/80">
+                      <p className="mt-3 whitespace-pre-line border-t border-line pt-2.5 font-mono text-[9px] leading-4 tracking-widest text-mute/80">
                         {project.flowNote}
                       </p>
                     )}
